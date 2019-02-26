@@ -29,7 +29,7 @@ class Solution {
 	private void helper (int start, int target, int[] candidates, List<List<Integer>> result, List<Integer> contains) {
 		if (target == 0) {
 			if (!result.contains(contains))	{
-				result.add(new Arraylist<Integer>(contains));
+				result.add(new ArrayList<Integer>(contains));
 			}
 			return;
 		}
