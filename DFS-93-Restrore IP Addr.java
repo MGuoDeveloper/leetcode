@@ -20,8 +20,8 @@ class Solution {
   		if (isValid(s)) {
   			cur += s;
   			result.add(cur);
-  			return;
   		}
+      return;
   	}
   	for (int i = 1; i < 4 && i < s.length(); i++) {
 			String str = s.substring(0, i);

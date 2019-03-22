@@ -41,9 +41,10 @@ class Solution {
   		return;
   	}
   	for (int j = 0; j < n; j++) {
-  		record[row] = j;
   		if (isValid(row, record)) {
+        record[row] = j;
   			helper(n, row + 1, lines, result, record);
+        record[row] = -1;
   		}
   	}
   }
