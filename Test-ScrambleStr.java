@@ -1,11 +1,12 @@
 class Solution {
 	public boolean isScramble (String s1, String s2) {
-		if (s1.length() != s2.length)
+		if (s1.length() != s2.length())
 			return false;
 		if (s1.length() == 1) {
 			return s1.equals(s2);
 		}
-		int[] arr = new int[26]{0};
+		int[] arr = new int[26];
+		Arrays.fill(arr, 0);
 		for (int i = 0; i < s1.length(); i++) {
 			arr[s1.charAt(i) - 'a']++;
 			arr[s2.charAt(i) - 'a']--;
@@ -19,7 +20,7 @@ class Solution {
 				isScramble(s1.substring(i), s2.substring(i)))
 				return true;
 			if (isScramble(s1.substring(0, i), s2.substring(s1.length() - i)) && 
-				isScramble(s1.substring(0, s1.length() - i), s2.substring(i)))
+				isScramble(s1.substring(i), s2.substring(0, s1.length() - i)))
 				return true;
 		}
 		return false;
