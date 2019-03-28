@@ -7,19 +7,25 @@ class Solution {
 			return false;
 		int[] arr = new int[len3];
 		Arrays.fill(arr, 1);
-		int i = 0; int p = 0; int q = 0;
-		for (int i = 0; i < len3; i++) {
-			if (arr[i] != 0 && s3.charAt(i) == s1.charAt(p)) {
+		int p = 0; int q = 0;
+		int i = 0;
+		while (i < len3 && p < len1) {
+			if (arr[i] == 1 && s3.charAt(i) == s1.charAt(p)) {
 				p++;
-				arr[i] = 0
+				arr[i] = 0;
 			}
+			i++;
 		}
-		for (int i = 0; i < len3; i++) {
-			if (arr[i] != 0 && s3.charAt(i) == s2.charAt(q)) {
+
+		i = 0;
+		while (i < len3 && q < len2) {
+			if (arr[i] == 1 && s3.charAt(i) == s2.charAt(q)) {
 				q++;
-				arr[i] = 0
+				arr[i] = 0;
 			}
+			i++;
 		}
+		
 		return p == len1 && q == len2;
 	}
 }
