@@ -15,12 +15,12 @@ class Solution {
 
     private List<TreeNode> generateSubTree (int num, int len) {
         List<TreeNode> list = new ArrayList<>();
-        if (num < len) {
+        if (num > len) {
             list.add(null);
         }
         for (int i = num; i <= len; i++) {
-            List<TreeNode> leftList = generateSubTree(tree, num, i - 1);
-            List<TreeNode> rightList = generateSubTree(tree, i + 1, len);
+            List<TreeNode> leftList = generateSubTree(num, i - 1);
+            List<TreeNode> rightList = generateSubTree(i + 1, len);
             for (TreeNode left: leftList) {
                 for (TreeNode right: rightList) {
                     TreeNode root = new TreeNode(i);
