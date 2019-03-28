@@ -4,10 +4,10 @@ class Solution {
 		int len1 = s1.length();
 		int len2 = s2.length();
 		int len3 = s3.length();
-		while (c < len1 && p < len2 && q < len3) {
-			char cur = s3.charAt(c);
+		while (p < len1 && q < len2 && c < len3) {
 			char cp = s1.charAt(p);
 			char cq = s2.charAt(q);
+			char cur = s3.charAt(c);
 			if (cp != cur && cq != cur) {
 				return false;
 			} else if (cp == cur && cq != cur) {
