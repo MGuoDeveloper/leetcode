@@ -17,7 +17,7 @@ class Solution {
 			} else {
 				String com = s3.substring(c + 1);
 				return isInterleave(s1.substring(p + 1), s2.substring(q), com) ||
-					isInterleave(s1.substring(p), s2.substring(q + 1), com)
+					isInterleave(s1.substring(p), s2.substring(q + 1), com);
 			}
 		}
 		if (p == len1) return s3.substring(c).equals(s2.substring(q));
