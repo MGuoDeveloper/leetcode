@@ -9,23 +9,52 @@
  */
 class Solution {
     public List<TreeNode> generateTrees(int n) {
-        List<TreeNode> preList = new ArrayList<>();
-        TreeNode tn = new TreeNode(1);
-        tn.left = null;
-        tn.right = null;
-        preList.add(tn);
-        for (int i = 2; i <= n; i++) {
-            List<TreeNode> curList = new ArrayList<>();
-            for (TreeNode head : preList) {            
-                TreeNode node1 = new TreeNode(i);
-                node1.left = head;
-                node1.right = null;
-                curList.add(node1);
-                
-                TreeNode node2 = new TreeNode(i);
-                node1.left = head;
-                node1.right = null;
+        if (n == 0) return new ArrayList<TreeNode>();
+        return generateSubTree(1, n);
+    }
+
+    private List<TreeNode> generateSubTree (int num, int len) {
+        List<TreeNode> list = new ArrayList<>();
+        if (num < len) {
+            list.add(null);
+        }
+        for (int i = num; i <= len; i++) {
+            List<TreeNode> leftList = generateSubTree(tree, num, i - 1);
+            List<TreeNode> rightList = generateSubTree(tree, i + 1, len);
+            for (TreeNode left: leftList) {
+                for (TreeNode right: rightList) {
+                    TreeNode root = new TreeNode(i);
+                    root.left = left;
+                    root.right = right;
+                    list.add(root);
+                }
             }
         }
+        return list;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
