@@ -14,6 +14,13 @@ class Solution {
 				arr[i] = 0
 			}
 		}
+		for (int i = 0; i < len3; i++) {
+			if (arr[i] != 0 && s3.charAt(i) == s2.charAt(q)) {
+				q++;
+				arr[i] = 0
+			}
+		}
+		return p == len1 && q == len2;
 	}
 }
 
