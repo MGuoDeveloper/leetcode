@@ -5,28 +5,21 @@ class Solution {
 		int len3 = s3.length();
 		if (len1 + len2 != len3)
 			return false;
-		int[] arr = new int[len3];
-		Arrays.fill(arr, 1);
-		int p = 0; int q = 0;
-		int i = 0;
-		while (i < len3 && p < len1) {
-			if (arr[i] == 1 && s3.charAt(i) == s1.charAt(p)) {
-				p++;
-				arr[i] = 0;
-			}
-			i++;
+		boolean[][] dp = new boolean[len1 + 1][len2 + 1];
+		dp[0][0] = true;
+		for (int i = 1; i <= len1; i++) {
+			dp[i][0] = dp[i - 1][0] && s1.charAt(i) == s3.charAt(i);
 		}
-
-		i = 0;
-		while (i < len3 && q < len2) {
-			if (arr[i] == 1 && s3.charAt(i) == s2.charAt(q)) {
-				q++;
-				arr[i] = 0;
-			}
-			i++;
+		for (int i = 1; i <= len2; i++) {
+			dp[0][i] = dp[0][i - 1] && s2.charAt(i) == s3.charAt(i);
 		}
-		
-		return p == len1 && q == len2;
+		for (int i = 1; i <= len1; i++) {
+			for (int j = 1; j <= len2; j++) {
+				dp[i][j] = (dp[i][j - 1] && s2.charAt(j) == s3.charAt(i + j - 1)) ||
+					(dp[i - 1][j] && s1.charAt(i) == s3.charAt(i + j - 1));
+			}
+		}
+		return dp[len1][len2];
 	}
 }
 
