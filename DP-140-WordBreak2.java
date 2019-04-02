@@ -1,24 +1,66 @@
 class Solution {
 	public List<String> wordBreak(String s, List<String> wordDict) {
-		List<String> res = new ArrayList<>();
-		addWord(s, 0, new StringBuilder(), wordDict, res);
-		return res;
+		return DFS(s, wordDict, new HashMap<String, LinkedList<String>>());
 	}
 
-	public void addWord(String s, int start, StringBuilder sb, List<String> wordDict, List<String> res) {
-		if (start == s.length() && sb.length() > 0) {
-			sb.deleteCharAt(sb.length() - 1);
-			res.add(sb.toString());
+	public List<String> DFS(String s, List<String> wordDict,
+		HashMap<String, LinkedList<String>> map) {
+		// make sure left String result list not cal duplicate
+		// use map do memoization
+		if (map.containsKey(s)) {
+			return map.get(s);
 		}
-		for (int i = start + 1; i <= s.length(); i++) {
-			String sub = s.substring(start, i);
-			if (wordDict.contains(sub)) {
-				int sbLen = sb.length();
-				sb.append(sub);
-				sb.append(" ");
-				addWord(s, i, sb, wordDict, res);
-				sb.delete(sbLen, sbLen + i - start + 1);
+		LinkedList<String> res = new LinkedList<>();
+		if (s.length() == 0) {
+			res.add("");
+			return res;
+		}
+		// word show once in Dict
+		for (String word : wordDict) {
+			if (s.startWith(word)) {
+				String rest = s.substring(word.length());
+				List<String> restList = DFS(rest, wordDict, map);
+				for (String sub : restList) {
+					res.add(word + sub == "" ? sub : (" " + sub));
+				}
 			}
 		}
+		map.put(s, res);
+		return res;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
