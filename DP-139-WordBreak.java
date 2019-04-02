@@ -4,7 +4,7 @@ class Solution {
 		if (wordDict.contains(s)) {
 			return true;
 		}
-		for (int i = 1; i < len; i++) {
+		for (int i = len - 1; i > 0; i--) {
 			String sub = s.substring(0, i);
 			if (wordDict.contains(sub) && 
 				wordBreak(s.substring(i), wordDict)) {
