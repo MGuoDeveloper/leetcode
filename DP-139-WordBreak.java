@@ -4,14 +4,17 @@ class Solution {
 		if (wordDict.contains(s)) {
 			return true;
 		}
-		for (int i = len - 1; i > 0; i--) {
-			String sub = s.substring(0, i);
-			if (wordDict.contains(sub) && 
-				wordBreak(s.substring(i), wordDict)) {
-				return true;
+		boolean[] dp = new boolean[len + 1];
+		dp[0] = true;
+		for (int i = 1; i <= len; i++) {
+			for (int j = i - 1; j >= 0; j++) {
+				if (dp[j] && wordDict.contains(s.substring(j, i))) {
+					dp[i] = true;
+					break;
+				}
 			}
 		}
-		return false;
+		return dp[len];
 	}
 }
 
