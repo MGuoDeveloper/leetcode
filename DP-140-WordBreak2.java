@@ -17,11 +17,11 @@ class Solution {
 		}
 		// word show once in Dict
 		for (String word : wordDict) {
-			if (s.startWith(word)) {
+			if (s.startsWith(word)) {
 				String rest = s.substring(word.length());
 				List<String> restList = DFS(rest, wordDict, map);
 				for (String sub : restList) {
-					res.add(word + sub == "" ? sub : (" " + sub));
+					res.add(word + (sub == "" ? sub : (" " + sub)));
 				}
 			}
 		}
