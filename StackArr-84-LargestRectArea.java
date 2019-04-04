@@ -5,7 +5,7 @@ class Solution {
 		Stack<Integer> s = new Stack<>();
 		for (int i = 0; i <= len; i++) {
 			int h = (i == len) ? 0 : heights[i];
-			if (s.isEmpty() || h >= s.peek()) {
+			if (s.isEmpty() || h >= heights[s.peek()]) {
 				s.push(i);
 			} else {
 				int tp = s.pop();
