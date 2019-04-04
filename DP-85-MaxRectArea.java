@@ -16,7 +16,7 @@ class Solution {
 		return res;
 	}
 
-	private void resetHeight(char[][] matrix, int[] height, ind ind) {
+	private void resetHeight(char[][] matrix, int[] height, int ind) {
 		for (int i = 0; i < height.length; i++) {
 			if (matrix[ind][i] == '1') {
 				height[i] += 1;
