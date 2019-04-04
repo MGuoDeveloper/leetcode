@@ -6,14 +6,15 @@ class Solution {
 		int m = matrix.length;
 		int n = matrix[0].length;
 		int res = 0;
-		int[][] b = new int[m + 1][n + 1];
+		int[][] b = new int[2][n + 1];
 		for (int i = 1; i <= m; i++) {
+			int t = i % 2;
 			for (int j = 1; j <= n; j++) {
 				if (matrix[i - 1][j - 1] == '1') {
-					b[i][j] = Math.min(
-						Math.min(b[i][j - 1], b[i - 1][j - 1]),
-						b[i - 1][j]) + 1;
-					res = Math.max(res, b[i][j]);
+					b[t][j] = Math.min(
+						Math.min(b[t][j - 1], b[1 - t][j - 1]),
+						b[1 - t][j]) + 1;
+					res = Math.max(res, b[t][j]);
 				}
 			}
 		}
