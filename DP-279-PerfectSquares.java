@@ -12,17 +12,19 @@ class Solution {
 		q.add(n);
 		while(q.size() > 0) {
 			cnt += 1;
-			int cur = q.poll();
-			for (int i = len - 1; i >= 0; i--) {
-				int sq = l.get(i);
-				if (cur == sq) {
-					return cnt;
-				} else if (cur < sq) {
-					break;
-				} else {
-					q.add(cur - sq);
+			Queue<Integer> tmp = new LinkedList<>();
+			while(q.size() > 0) {
+				int cur = q.poll();
+				for (int j = len - 1; j >= 0; j--) {
+					int sq = l.get(j);
+					if (cur == sq) {
+						return cnt;
+					} else if (cur > sq) {
+						tmp.add(cur - sq);
+					}
 				}
 			}
+			q = tmp;
 		}
 		return cnt;
 	}
