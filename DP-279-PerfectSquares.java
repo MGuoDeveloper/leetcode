@@ -1,5 +1,34 @@
 class Solution {
 	public int numSquares(int n) {
+		List<Integer> q = new ArrayList<>();
+		int len = Math.sqrt(n);
+		int[] l = new int[len]; 
+		int i = 1;
+		while (i * i <= n) {
+			l.add(i * i);
+			i++;
+		}
+		int cnt = 0;
+		q.add(n);
+		while(q.size() > 0) {
+			cnt += 1;
+			List<Integer> tmp = new ArrayList<>();
+			for (int cur : q) {
+				for (int j = len - 1; j >= 0; j--) {
+					int sq = l[j];
+					if (cur == sq) {
+						return cnt;
+					} else if (cur > sq) {
+						tmp.add(cur - sq);
+					}
+				}
+			}
+			q = tmp;
+		}
+		return cnt;
+	}
+
+	public int numSquares(int n) {
 		Queue<Integer> q = new LinkedList<>();
 		List<Integer> l = new ArrayList<>();
 		int i = 0;
