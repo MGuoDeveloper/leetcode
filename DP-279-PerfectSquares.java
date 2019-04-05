@@ -1,12 +1,10 @@
 class Solution {
 	public int numSquares(int n) {
 		List<Integer> q = new ArrayList<>();
-		int len = Math.sqrt(n);
+		int len = (int)Math.sqrt(n);
 		int[] l = new int[len]; 
-		int i = 1;
-		while (i * i <= n) {
-			l.add(i * i);
-			i++;
+		for (int i = 1; i <= len; i++) {
+			l[i - 1] = i * i;
 		}
 		int cnt = 0;
 		q.add(n);
