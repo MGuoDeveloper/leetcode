@@ -16,7 +16,7 @@ class Solution {
 					int sq = l[j];
 					if (cur == sq) {
 						return cnt;
-					} else if (cur > sq) {
+					} else if (cur > sq && !tmp.contains(cur - sq)) {
 						tmp.add(cur - sq);
 					}
 				}
